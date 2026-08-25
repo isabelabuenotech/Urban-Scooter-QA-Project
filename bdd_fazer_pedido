@@ -26,14 +26,13 @@ Funcionalidade: Formulário "Para quem é a Scooter" - Validação do Campo "Nom
     Então, o resultado esperado para a validação deve ser "<resultado_esperado>"
 
     Exemplos:
-      | id | tamanho | string_teste      | resultado_esperado                                                                |
-      | 3  | 1 char  | A                 | O campo fica destacado em vermelho e exibe mensagem de erro                       |
-      | 4  | 2 chars | An                | O campo aceita a string, nao e destacado e a mensagem de erro nao aparece         |
-      | 5  | 7 chars | Anelisa           | O campo aceita a string, nao e destacado e a mensagem de erro nao aparece         |
-      | 6  | 14 chars| AnelisaCamargo    | O campo aceita a string, nao e destacado e a mensagem de erro nao aparece         |
-      | 7  | 15 chars| AnelisaCamargoS   | O campo aceita a string, nao e destacado e a mensagem de erro nao aparece         |
-      | 8  | 16 chars| AnelisaCamargoSa  | O campo fica destacado em vermelho e exibe mensagem de erro                       |
-      | 2  | 1 espaço| Anelisa Camargo   | O campo aceita a string, nao e destacado e a mensagem de erro nao aparece         |
-      | 11 | Nao-Lat | アネリサ            | O campo fica destacado em vermelho e exibe mensagem de erro                      |
-      | 12 | Especia | Anelis@           | O campo fica destacado em vermelho e exibe mensagem de erro                       |
-      
+      | id | dados de teste para classe de equivalência | string_teste      | resultado_esperado                                                                |
+      | 3  |     1 char                                 | A                 | O campo fica destacado em vermelho e exibe mensagem de erro                       |
+      | 4  |     2 chars                                | An                | O campo aceita a string, nao e destacado e a mensagem de erro nao aparece         |
+      | 5  |     7 chars                                | Anelisa           | O campo aceita a string, nao e destacado e a mensagem de erro nao aparece         |
+      | 6  |     14 chars                               | AnelisaCamargo    | O campo aceita a string, nao e destacado e a mensagem de erro nao aparece         |
+      | 7  |     15 chars                               | AnelisaCamargoS   | O campo aceita a string, nao e destacado e a mensagem de erro nao aparece         |
+      | 8  |     16 chars                               | AnelisaCamargoSa  | O campo fica destacado em vermelho e exibe mensagem de erro                       |
+      | 2  |     1 espaço                               | Anelisa Camargo   | O campo aceita a string, nao e destacado e a mensagem de erro nao aparece         |
+      | 11 |     Não latino                             | アネリサ            | O campo fica destacado em vermelho e exibe mensagem de erro                      |
+      | 12 |     Especial                               | Anelis@           | O campo fica destacado em vermelho e exibe mensagem de erro                       |
