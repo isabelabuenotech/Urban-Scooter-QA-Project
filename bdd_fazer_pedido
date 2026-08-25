@@ -1,0 +1,39 @@
+# language: pt
+@UrbanScooter @FazerPedido
+Funcionalidade: Formulário "Para quem é a Scooter" - Validação do Campo "Nome"
+  Como usuário do aplicativo Urban Scooter
+  Quero preencher o campo "Nome" no formulário de pedido
+  Para avançar com a solicitaçãoo da scooter de forma válida
+
+  Contexto:
+    Dado que o usuário acessou o aplicativo Urban Scooter
+    E clicou no botão "Fazer Pedido"
+    E o formulário "Para quem é a Scooter" está visível na página
+
+  @obrigatoriedade
+  Cenário: Checagem da obrigatoriedade do campo "Nome"
+    Quando o usuário clica no campo "Nome"
+    E não digita nenhum valor
+    E remove o foco do campo "Nome" clicando fora dele
+    Então, o campo "Nome" ficará destacado em vermelho
+    E a mensagem de erro correspondente aparecerá abaixo do campo em vermelho
+
+  @classes_equivalencia @valores_limite
+  Esquema do Cenário: Validação do campo "Nome" com diferentes comprimentos de string
+    Quando o usuário clica no campo "Nome"
+    E digita "<string_teste>"
+    E remove o foco do campo "Nome" clicando fora dele
+    Então, o resultado esperado para a validação deve ser "<resultado_esperado>"
+
+    Exemplos:
+      | id | tamanho | string_teste      | resultado_esperado                                                                |
+      | 3  | 1 char  | A                 | O campo fica destacado em vermelho e exibe mensagem de erro                       |
+      | 4  | 2 chars | An                | O campo aceita a string, nao e destacado e a mensagem de erro nao aparece         |
+      | 5  | 7 chars | Anelisa           | O campo aceita a string, nao e destacado e a mensagem de erro nao aparece         |
+      | 6  | 14 chars| AnelisaCamargo    | O campo aceita a string, nao e destacado e a mensagem de erro nao aparece         |
+      | 7  | 15 chars| AnelisaCamargoS   | O campo aceita a string, nao e destacado e a mensagem de erro nao aparece         |
+      | 8  | 16 chars| AnelisaCamargoSa  | O campo fica destacado em vermelho e exibe mensagem de erro                       |
+      | 2  | 1 espaço| Anelisa Camargo   | O campo aceita a string, nao e destacado e a mensagem de erro nao aparece         |
+      | 11 | Nao-Lat | アネリサ            | O campo fica destacado em vermelho e exibe mensagem de erro                      |
+      | 12 | Especia | Anelis@           | O campo fica destacado em vermelho e exibe mensagem de erro                       |
+      
