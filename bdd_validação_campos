@@ -1,0 +1,41 @@
+# language: pt
+@UrbanScooter @ValidacaoCampos @Sprint03
+Funcionalidade: Validação de Regras de Negócio e Limites dos Campos
+  Como Analista de Qualidade
+  Quero validar as regras de entrada de texto e limites dos campos do formulário
+  Para garantir que dados inválidos ou fora de escopo sejam bloqueados pelo sistema
+
+  Contexto:
+    Dado que o usuário abriu o formulário "Para quem é a Scooter"
+
+  @campo_nome @valores_limite
+  Esquema do Cenário: Validação do limite de caracteres no campo "Nome"
+    Quando o usuário clica no campo "Nome"
+    E digita a string de teste "<string_teste>"
+    E remove o foco do campo clicando fora dele
+    Então o resultado esperado da validação deve ser "<resultado_esperado>"
+
+    Exemplos:
+      | id | classe_equivalência   | string_teste      | resultado_esperado                                                        |
+      | 1  | Campo Vazio           |                   | O campo fica destacado em vermelho e exibe mensagem de campo obrigatório  |
+      | 3  | Limite Inferior       | A                 | O campo fica destacado em vermelho e exibe mensagem de tamanho inválido   |
+      | 4  | Limite Mínimo         | An                | O campo aceita a string, não fica destacado e a mensagem não aparece      |
+      | 5  | Classe Válida         | Anelisa           | O campo aceita a string, não fica destacado e a mensagem não aparece      |
+      | 6  | Classe Válida         | AnelisaCamargo    | O campo aceita a string, não fica destacado e a mensagem não aparece      |
+      | 7  | Limite Máximo         | AnelisaCamargoS   | O campo aceita a string, não fica destacado e a mensagem não aparece      |
+      | 8  | Limite Superior       | AnelisaCamargoSa  | O campo fica destacado em vermelho e exibe mensagem de tamanho inválido   |
+
+  @campo_nome @caracteres_especiais
+  Esquema do Cenário: Validação de caracteres e formatos especiais no campo "Nome"
+    Quando o usuário clica no campo "Nome"
+    E digita a entrada "<entrada_especial>"
+    E remove o foco do campo clicando fora dele
+    Então o sistema deve processar a entrada com o resultado "<resultado>"
+
+    Exemplos:
+      | id | tipo_de_entrada          | string_teste     | resultado_esperado                                                                |
+      | 2  | Espaço simples           | Anelisa Camargo  | Aceita a string sem exibir mensagens de erro                             |
+      | 9  | Múltiplos espaços        | Ane  Camargo     | Aceita a string e aciona a higienização do texto                         |
+      | 10 | Hífen composto           | Ane-Camargo      | Aceita a string sem exibir mensagens de erro                             |
+      | 11 | Alfabeto não latino      | アネリサ            | O campo fica destacado em vermelho e exibe mensagem de caractere inválido |
+      | 12 | Caracteres especiais (@) | Anelis@          | O campo fica destacado em vermelho e exibe mensagem de caractere inválido |
