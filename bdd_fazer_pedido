@@ -1,5 +1,37 @@
 # language: pt
+
+# language: pt
 @UrbanScooter @FazerPedido
+
+1.
+Funcionalidade: Formulário "Para quem é a Scooter" - Fluxo de Pedido
+  Como usuário do aplicativo Urban Scooter
+  Quero preencher minhas informações pessoais e selecionar o local de entrega
+  Para avançar com a solicitação de aluguel da scooter
+
+  Contexto:
+    Dado que o usuário está na página inicial do aplicativo Urban Scooter
+    E clica no botão "Fazer Pedido"
+    E o formulário "Para quem é a Scooter" é exibido na tela
+
+  @obrigatoriedade @ui
+  Cenário: Tentar avançar no formulário sem preencher os campos obrigatórios
+    Quando o usuário clica no botão "Avançar" sem preencher os campos do formulário
+    Então os campos obrigatórios vazios devem ser destacados em vermelho
+    E a mensagem de erro correspondente deve ser exibida abaixo de cada campo
+    E o usuário não deve avançar para a próxima etapa
+
+  @fluxo_sucesso @smoke
+  Cenário: Preenchimento de pedido com dados válidos
+    Quando o usuário digita "Anelisa" no campo "Nome"
+    E digita "Camargo" no campo "Sobrenome"
+    E digita "Rua das Flores, 123" no campo "Endereço"
+    E seleciona a estação "Estação Central" no campo "Estação de Metrô"
+    E digita "+79991112233" no campo "Telefone"
+    E clica no botão "Avançar"
+    Então o formulário da segunda etapa "Sobre o aluguel" deve ser exibido com sucesso
+
+2.
 Funcionalidade: Formulário "Para quem é a Scooter" - Validação do Campo "Nome"
   Como usuário do aplicativo Urban Scooter
   Quero preencher o campo "Nome" no formulário de pedido
@@ -36,3 +68,4 @@ Funcionalidade: Formulário "Para quem é a Scooter" - Validação do Campo "Nom
       | 2  |     1 espaço                               | Anelisa Camargo   | O campo aceita a string, nao e destacado e a mensagem de erro nao aparece         |
       | 11 |     Não latino                             | アネリサ            | O campo fica destacado em vermelho e exibe mensagem de erro                      |
       | 12 |     Especial                               | Anelis@           | O campo fica destacado em vermelho e exibe mensagem de erro                       |
+
